@@ -12,5 +12,7 @@ namespace Duombaze
         }
 
         public DbSet<Motherboard> Motherboard { get; set; }
+        public DbSet<RAM_Types> RAM_Types { get; set; }
+        public DbSet<SocketTypes> SocketTypes { get; set; }
     }
 }

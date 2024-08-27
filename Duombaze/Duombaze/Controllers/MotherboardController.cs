@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Duombaze;
 using Duombaze.Models;
+using Duombaze.Models.ViewModels;
 
 namespace Duombaze.Controllers
 {
@@ -22,7 +23,18 @@ namespace Duombaze.Controllers
         // GET: Motherboard
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Motherboard.ToListAsync());
+            List<MotherboardModel> viewModels = await _context.Motherboard
+                .Select(m => new MotherboardModel
+                {
+                    Id = m.Id,
+                    Model = m.Model,
+                    RAM_Slots = m.RAM_Slots,
+                    Socket = _context.SocketTypes.FirstOrDefault(s => s.id == m.Socket).name,
+                    RAM_Type = _context.RAM_Types.FirstOrDefault(r => r.id == m.RAM_Type).name
+                })
+                .ToListAsync();
+
+            return View(viewModels);
         }
 
         // GET: Motherboard/Details/5

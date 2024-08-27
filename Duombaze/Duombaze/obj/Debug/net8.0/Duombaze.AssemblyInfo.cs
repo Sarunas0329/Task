@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Duombaze")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d1bf58ab9c3ad9fbec127dcc1c3d00737ccf2dc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f5d5e338ca7860aa0e197b0b93987261bab8307")]
 [assembly: System.Reflection.AssemblyProductAttribute("Duombaze")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Duombaze")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
