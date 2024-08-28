@@ -16,13 +16,13 @@
                 @Html.DisplayNameFor(model => model.Model)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RAM_Slots)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Socket)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RAM_Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RAM_Slots)
             </th>
             <th></th>
         </tr>
@@ -34,13 +34,13 @@
                 @Html.DisplayFor(modelItem => item.Model)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RAM_Slots)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Socket)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RAM_Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RAM_Slots)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

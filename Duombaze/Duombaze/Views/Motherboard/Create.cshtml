@@ -1,43 +1,37 @@
-﻿@model Duombaze.Models.Motherboard
+﻿@model Duombaze.Models.ViewModels.MotherboardModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h2>Create Motherboard</h2>
 
-<h4>Motherboard</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Model" class="control-label"></label>
-                <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RAM_Slots" class="control-label"></label>
-                <input asp-for="RAM_Slots" class="form-control" />
-                <span asp-validation-for="RAM_Slots" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Socket" class="control-label"></label>
-                <input asp-for="Socket" class="form-control" />
-                <span asp-validation-for="Socket" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RAM_Type" class="control-label"></label>
-                <input asp-for="RAM_Type" class="form-control" />
-                <span asp-validation-for="RAM_Type" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+@using (Html.BeginForm("Create", "Motherboard", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Model)
+        @Html.TextBoxFor(model => model.Model, new { @class = "form-control" })
     </div>
-</div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RAM_Slots)
+        @Html.TextBoxFor(model => model.RAM_Slots, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RAM_TypeId, "RAM Type")
+        @Html.DropDownListFor(model => model.RAM_TypeId, Model.RAM_TypesList, "Select RAM Type", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SocketId, "Socket Type")
+        @Html.DropDownListFor(model => model.SocketId, Model.SocketTypesList, "Select Socket Type", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+}
+
 
 <div>
     <a asp-action="Index">Back to List</a>
