@@ -64,12 +64,6 @@ namespace Duombaze.Controllers
         [HttpPost]
         public ActionResult Create(MotherboardModel motherboard)
         {
-            Console.WriteLine($"Id: {motherboard.Id}");
-            Console.WriteLine($"Model: {motherboard.Model}");
-            Console.WriteLine($"RAM_Slots: {motherboard.RAM_Slots}");
-            Console.WriteLine($"RAM_Type: {motherboard.RAM_TypeId}");
-            Console.WriteLine($"Socket: {motherboard.SocketId}");
-
             if (ModelState.IsValid)
             {
                 Motherboard motherboard1 = new Motherboard
@@ -113,7 +107,7 @@ namespace Duombaze.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Model,RAM_Slots,Socket,RAM_Type")] Motherboard motherboard)
+        public async Task<IActionResult> Edit(int id, MotherboardModel motherboard)
         {
             if (id != motherboard.Id)
             {
@@ -124,7 +118,12 @@ namespace Duombaze.Controllers
             {
                 try
                 {
-                    _context.Update(motherboard);
+                    Motherboard oldMotherboard = _context.Motherboard.FirstOrDefault(m => m.Id == id);
+                    oldMotherboard.Model = motherboard.Model;
+                    oldMotherboard.RAM_Slots = motherboard.RAM_Slots;
+                    oldMotherboard.RAM_Type = motherboard.RAM_TypeId;
+                    oldMotherboard.Socket = motherboard.SocketId;
+                    _context.Update(oldMotherboard);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -151,8 +150,11 @@ namespace Duombaze.Controllers
                 return NotFound();
             }
 
-            var motherboard = await _context.Motherboard
-                .FirstOrDefaultAsync(m => m.Id == id);
+            List<MotherboardModel> viewModels = await GetMotherboardViewModels();
+            var motherboard = viewModels
+                .Select(viewModels => viewModels)
+                .Where(m => m.Id == id)
+                .FirstOrDefault();
             if (motherboard == null)
             {
                 return NotFound();

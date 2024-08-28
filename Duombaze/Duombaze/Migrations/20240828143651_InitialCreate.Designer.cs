@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Duombaze.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240827192102_InitialCreate")]
+    [Migration("20240828143651_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -48,6 +48,40 @@ namespace Duombaze.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Motherboard");
+                });
+
+            modelBuilder.Entity("Duombaze.Models.RAM_Types", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("RAM_Types");
+                });
+
+            modelBuilder.Entity("Duombaze.Models.SocketTypes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("SocketTypes");
                 });
 #pragma warning restore 612, 618
         }

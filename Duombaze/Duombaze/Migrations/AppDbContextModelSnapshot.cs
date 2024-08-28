@@ -46,6 +46,40 @@ namespace Duombaze.Migrations
 
                     b.ToTable("Motherboard");
                 });
+
+            modelBuilder.Entity("Duombaze.Models.RAM_Types", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("RAM_Types");
+                });
+
+            modelBuilder.Entity("Duombaze.Models.SocketTypes", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("SocketTypes");
+                });
 #pragma warning restore 612, 618
         }
     }
