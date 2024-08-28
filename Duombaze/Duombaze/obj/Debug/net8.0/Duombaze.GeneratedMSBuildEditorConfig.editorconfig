@@ -54,8 +54,48 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW90aGVyYm9hcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/RAM_Types/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUkFNX1R5cGVzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/RAM_Types/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUkFNX1R5cGVzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/RAM_Types/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUkFNX1R5cGVzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/RAM_Types/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUkFNX1R5cGVzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/RAM_Types/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUkFNX1R5cGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/SocketTypes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29ja2V0VHlwZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/SocketTypes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29ja2V0VHlwZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/SocketTypes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29ja2V0VHlwZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/SocketTypes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29ja2V0VHlwZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/SocketTypes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU29ja2V0VHlwZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Sarun/Desktop/LSMU/Task/Duombaze/Duombaze/Views/_ViewImports.cshtml]

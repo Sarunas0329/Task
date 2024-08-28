@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Duombaze;
 using Duombaze.Models;
 using Duombaze.Models.ViewModels;
 
@@ -183,47 +178,49 @@ namespace Duombaze.Controllers
             return _context.Motherboard.Any(e => e.Id == id);
         }
         private async Task<List<MotherboardModel>> GetMotherboardViewModels()
-        { 
-            var socketTypes = _context.SocketTypes.ToList();
-            var ramTypes = _context.RAM_Types.ToList();
-            return await _context.Motherboard
+        {
+            var SocketTypesList = _context.SocketTypes.Select(r => new SelectListItem
+            {
+                Value = r.id.ToString(),
+                Text = r.name
+            }).ToList();
+            var RAM_TypesList = _context.RAM_Types.Select(r => new SelectListItem
+            {
+                Value = r.id.ToString(),
+                Text = r.name
+            }).ToList();
+            var motherboards = await _context.Motherboard
                 .Select(m => new MotherboardModel
                 {
                     Id = m.Id,
                     Model = m.Model,
                     RAM_Slots = m.RAM_Slots,
-                    Socket = _context.SocketTypes.FirstOrDefault(s => s.id == m.Socket).name,
-                    RAM_Type = _context.RAM_Types.FirstOrDefault(r => r.id == m.RAM_Type).name,
-                    RAM_TypesList = _context.RAM_Types.Select(r => new SelectListItem
-                    {
-                        Value = r.id.ToString(),
-                        Text = r.name
-                    }).ToList(),
-                    SocketTypesList = _context.SocketTypes.Select(r => new SelectListItem
-                    {
-                        Value = r.id.ToString(),
-                        Text = r.name
-                    }).ToList(),
+                    Socket = _context.SocketTypes.First(s => s.id == m.Socket).name,
+                    RAM_Type = _context.RAM_Types.First(r => r.id == m.RAM_Type).name,                  
                     RAM_TypeId = m.RAM_Type,
                     SocketId = m.Socket
                 })
                 .ToListAsync();
+            int i = 1;
+            return motherboards;
         }
         private MotherboardModel GetMotherboardModel(Motherboard motherboard)
         {
+            var socketTypes = _context.SocketTypes.ToList();
+            var ramTypes = _context.RAM_Types.ToList();
             MotherboardModel viewModel = new MotherboardModel
             {
                 Id = motherboard.Id,
                 Model = motherboard.Model,
                 RAM_Slots = motherboard.RAM_Slots,
-                Socket = _context.SocketTypes.FirstOrDefault(s => s.id == motherboard.Socket).name,
-                RAM_Type = _context.RAM_Types.FirstOrDefault(r => r.id == motherboard.RAM_Type).name,
-                RAM_TypesList = _context.RAM_Types.Select(r => new SelectListItem
+                Socket = socketTypes.FirstOrDefault(s => s.id == motherboard.Socket).name,
+                RAM_Type = ramTypes.FirstOrDefault(r => r.id == motherboard.RAM_Type).name,
+                RAM_TypesList = ramTypes.Select(r => new SelectListItem
                 {
                     Value = r.id.ToString(),
                     Text = r.name
                 }).ToList(),
-                SocketTypesList = _context.SocketTypes.Select(r => new SelectListItem
+                SocketTypesList = socketTypes.Select(r => new SelectListItem
                 {
                     Value = r.id.ToString(),
                     Text = r.name
@@ -236,15 +233,15 @@ namespace Duombaze.Controllers
         private void PopulateLists(MotherboardModel model)
         {
             model.RAM_TypesList = _context.RAM_Types.Select(r => new SelectListItem
-        {
-            Value = r.id.ToString(),
-            Text = r.name
-        }).ToList();
-        model.SocketTypesList = _context.SocketTypes.Select(s => new SelectListItem
-        {
-            Value = s.id.ToString(),
-            Text = s.name
-        }).ToList();
+            {
+                Value = r.id.ToString(),
+                Text = r.name
+            }).ToList();
+            model.SocketTypesList = _context.SocketTypes.Select(s => new SelectListItem
+            {
+                Value = s.id.ToString(),
+                Text = s.name
+            }).ToList();
         }
     }
 }
