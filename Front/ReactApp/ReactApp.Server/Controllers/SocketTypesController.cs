@@ -10,6 +10,8 @@ using Duombaze.Models;
 
 namespace Duombaze.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class SocketTypesController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,9 +22,11 @@ namespace Duombaze.Controllers
         }
 
         // GET: SocketTypes
+        [HttpGet("list")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.SocketTypes.ToListAsync());
+            Console.WriteLine("yra");
+            return Ok(await _context.SocketTypes.ToListAsync());
         }
 
         // GET: SocketTypes/Details/5

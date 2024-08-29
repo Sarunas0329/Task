@@ -18,14 +18,16 @@ namespace Duombaze.Controllers
         }
 
         // GET: Motherboard
+        [HttpGet("list")]
         public async Task<IActionResult> Index()
         {
             List<MotherboardModel> viewModels = await GetMotherboardViewModels();
 
-            return View(viewModels);
+            return Ok(viewModels);
         }
 
         // GET: Motherboard/Details/5
+        [HttpGet("{id}/details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,7 +44,7 @@ namespace Duombaze.Controllers
                 return NotFound();
             }
 
-            return View(motherboard);
+            return Ok(motherboard);
         }
 
         // GET: Motherboard/Create
@@ -81,6 +83,7 @@ namespace Duombaze.Controllers
         }
 
         // GET: Motherboard/Edit/5
+        [HttpGet("{id}/edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -96,7 +99,7 @@ namespace Duombaze.Controllers
             {
                 return NotFound();
             }
-            return View(motherboard);
+            return Ok(motherboard);
         }
 
         // POST: Motherboard/Edit/5
@@ -140,6 +143,7 @@ namespace Duombaze.Controllers
         }
 
         // GET: Motherboard/Delete/5
+        [HttpGet("{id}/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -157,12 +161,11 @@ namespace Duombaze.Controllers
                 return NotFound();
             }
 
-            return View(motherboard);
+            return Ok(motherboard);
         }
 
         // POST: Motherboard/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var motherboard = await _context.Motherboard.FindAsync(id);
@@ -172,7 +175,7 @@ namespace Duombaze.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok();
         }
 
         private bool MotherboardExists(int id)

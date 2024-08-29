@@ -11,6 +11,8 @@ using Npgsql;
 
 namespace Duombaze.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class RAM_TypesController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,9 +23,10 @@ namespace Duombaze.Controllers
         }
 
         // GET: RAM_Types
+        [HttpGet("list")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.RAM_Types.ToListAsync());
+            return Ok(await _context.RAM_Types.ToListAsync());
         }
 
         public IActionResult Create()
