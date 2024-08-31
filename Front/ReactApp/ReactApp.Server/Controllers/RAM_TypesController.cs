@@ -29,25 +29,46 @@ namespace Duombaze.Controllers
             return Ok(await _context.RAM_Types.ToListAsync());
         }
 
+        [HttpGet("create")]
         public IActionResult Create()
         {
-            return View();
+            return Ok();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,name")] RAM_Types ram_Types)
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(RAM_Types ram_Types)
         {
             if (ModelState.IsValid)
             {
+                if (_context.RAM_Types.Any(e => e.name == ram_Types.name))
+                {
+                    ModelState.AddModelError("", "Unable to save changes. RAM Type already exists.");
+                    return StatusCode(501);
+                }
                 _context.Add(ram_Types);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(ram_Types);
+            return Ok(ram_Types);
+        }
+        [HttpGet("{id}/details")]
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var rAM_Types = await _context.RAM_Types.FindAsync(id);
+            if (rAM_Types == null)
+            {
+                return NotFound();
+            }
+            return Ok(rAM_Types);
         }
 
         // GET: RAM_Types/Edit/5
+        [HttpGet("{id}/edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -60,14 +81,13 @@ namespace Duombaze.Controllers
             {
                 return NotFound();
             }
-            return View(rAM_Types);
+            return Ok(rAM_Types);
         }
 
         // POST: RAM_Types/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/edit")]
         public async Task<IActionResult> Edit(int id, [Bind("id,name")] RAM_Types rAM_Types)
         {
             if (id != rAM_Types.id)
@@ -77,6 +97,11 @@ namespace Duombaze.Controllers
 
             if (ModelState.IsValid)
             {
+                if(_context.RAM_Types.Any(e => e.name == rAM_Types.name))
+                {
+                    ModelState.AddModelError("", "Unable to save changes. RAM Type already exists.");
+                    return StatusCode(501);
+                }
                 try
                 {
                     _context.Update(rAM_Types);
@@ -95,10 +120,11 @@ namespace Duombaze.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(rAM_Types);
+            return Ok(rAM_Types);
         }
 
         // GET: RAM_Types/Delete/5
+        [HttpGet("{id}/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -113,12 +139,11 @@ namespace Duombaze.Controllers
                 return NotFound();
             }
 
-            return View(rAM_Types);
+            return Ok(rAM_Types);
         }
 
         // POST: RAM_Types/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var rAM_Types = await _context.RAM_Types.FindAsync(id);

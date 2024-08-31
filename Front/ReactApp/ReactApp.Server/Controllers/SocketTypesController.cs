@@ -30,6 +30,7 @@ namespace Duombaze.Controllers
         }
 
         // GET: SocketTypes/Details/5
+        [HttpGet("{id}/details")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -44,32 +45,37 @@ namespace Duombaze.Controllers
                 return NotFound();
             }
 
-            return View(socketTypes);
+            return Ok(socketTypes);
         }
 
         // GET: SocketTypes/Create
+        [HttpGet("create")]
         public IActionResult Create()
         {
-            return View();
+            return Ok();
         }
 
         // POST: SocketTypes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost("create")]
         public async Task<IActionResult> Create([Bind("id,name")] SocketTypes socketTypes)
         {
             if (ModelState.IsValid)
             {
+                if (_context.SocketTypes.Any(e => e.name == socketTypes.name))
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Socket Type already exists.");
+                    return StatusCode(501);
+                }
                 _context.Add(socketTypes);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(socketTypes);
+            return Ok(socketTypes);
         }
 
-        // GET: SocketTypes/Edit/5
+        [HttpGet("{id}/edit")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,16 +88,14 @@ namespace Duombaze.Controllers
             {
                 return NotFound();
             }
-            return View(socketTypes);
+            return Ok(socketTypes);
         }
 
-        // POST: SocketTypes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/edit")]
         public async Task<IActionResult> Edit(int id, [Bind("id,name")] SocketTypes socketTypes)
         {
+            Console.WriteLine(id);
+            Console.WriteLine(socketTypes.id);
             if (id != socketTypes.id)
             {
                 return NotFound();
@@ -99,6 +103,11 @@ namespace Duombaze.Controllers
 
             if (ModelState.IsValid)
             {
+                if (_context.SocketTypes.Any(e => e.name == socketTypes.name))
+                {
+                    ModelState.AddModelError("", "Unable to save changes. Socket Type already exists.");
+                    return StatusCode(501);
+                }
                 try
                 {
                     _context.Update(socketTypes);
@@ -117,10 +126,11 @@ namespace Duombaze.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(socketTypes);
+            return Ok(socketTypes);
         }
 
         // GET: SocketTypes/Delete/5
+        [HttpGet("{id}/delete")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -139,8 +149,7 @@ namespace Duombaze.Controllers
         }
 
         // POST: SocketTypes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var socketType = await _context.SocketTypes.FindAsync(id);

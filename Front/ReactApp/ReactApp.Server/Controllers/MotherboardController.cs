@@ -48,19 +48,19 @@ namespace Duombaze.Controllers
         }
 
         // GET: Motherboard/Create
-        [HttpGet]
+        [HttpGet("create")]
         public ActionResult Create()
         {
             var model = new MotherboardModel();
             PopulateLists(model);
 
-            return View(model);
+            return Ok(model);
         }
 
         // POST: Motherboard/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost("create")]
         public ActionResult Create(MotherboardModel motherboard)
         {
             if (ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace Duombaze.Controllers
             }
             PopulateLists(motherboard);
 
-            return View(motherboard);
+            return Ok(motherboard);
         }
 
         // GET: Motherboard/Edit/5
@@ -105,8 +105,7 @@ namespace Duombaze.Controllers
         // POST: Motherboard/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost("{id}/edit")]
         public async Task<IActionResult> Edit(int id, MotherboardModel motherboard)
         {
             if (id != motherboard.Id)
@@ -139,7 +138,7 @@ namespace Duombaze.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(motherboard);
+            return Ok(motherboard);
         }
 
         // GET: Motherboard/Delete/5

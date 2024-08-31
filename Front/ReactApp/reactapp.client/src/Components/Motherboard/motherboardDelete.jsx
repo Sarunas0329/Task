@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "../../axiosConfig";
 import { Button } from "@progress/kendo-react-buttons";
 import styled from "styled-components";
+import { AppBar, AppBarSection } from "@progress/kendo-react-layout";
+import { useNotification } from "../Notification";
 
 const DeleteButton = styled(Button)`
   background-color: red;
@@ -11,13 +13,13 @@ const MotherboardDelete = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [motherboard, setMotherboard] = useState({});
+  const { addNotification } = useNotification();
 
   console.log("Motherboard ID: ", id);
   useEffect(() => {
     const fetchMotherboard = async () => {
       try {
         const response = await axios.get(`/api/motherboard/${id}/details`);
-        console.log(response.data);
         setMotherboard(response.data);
       } catch (error) {
         console.error("Error fetching motherboard data:", error);
@@ -31,7 +33,8 @@ const MotherboardDelete = () => {
       axios
         .post(`/api/motherboard/${id}/delete`)
         .then(() => {
-          navigate("/", { delete: true });
+          addNotification("Motherboard deleted", "success");
+          navigate("/motherboard", { delete: true });
         })
         .catch((error) => {
           console.error("Error deleting motherboard:", error);
@@ -41,6 +44,31 @@ const MotherboardDelete = () => {
 
   return (
     <div>
+      <React.Fragment>
+        <AppBar className="k-appbar">
+          <AppBarSection>
+            <h1 className="title">Užduotis</h1>
+          </AppBarSection>
+
+          <AppBarSection>
+            <ul>
+              <li>
+                <span onClick={() => navigate("/motherboard")}>
+                  Motherboards
+                </span>
+              </li>
+              <li>
+                <span onClick={() => navigate("/ramTypes")}>RAM Types</span>
+              </li>
+              <li>
+                <span onClick={() => navigate("/socketTypes")}>
+                  Socket Types
+                </span>
+              </li>
+            </ul>
+          </AppBarSection>
+        </AppBar>
+      </React.Fragment>
       <h1>Motherboard Details</h1>
       <div>
         <h3>Model: {motherboard.model}</h3>

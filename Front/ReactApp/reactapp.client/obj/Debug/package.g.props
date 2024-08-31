@@ -20,6 +20,7 @@
     <PackageJsonDependenciesProgressKendoReactInputs Condition="$(PackageJsonDependenciesProgressKendoReactInputs) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactInputs>
     <PackageJsonDependenciesProgressKendoReactIntl Condition="$(PackageJsonDependenciesProgressKendoReactIntl) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactIntl>
     <PackageJsonDependenciesProgressKendoReactLayout Condition="$(PackageJsonDependenciesProgressKendoReactLayout) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactLayout>
+    <PackageJsonDependenciesProgressKendoReactNotification Condition="$(PackageJsonDependenciesProgressKendoReactNotification) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactNotification>
     <PackageJsonDependenciesProgressKendoReactPdf Condition="$(PackageJsonDependenciesProgressKendoReactPdf) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactPdf>
     <PackageJsonDependenciesProgressKendoReactPopup Condition="$(PackageJsonDependenciesProgressKendoReactPopup) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactPopup>
     <PackageJsonDependenciesProgressKendoReactProgressbars Condition="$(PackageJsonDependenciesProgressKendoReactProgressbars) == ''">^8.2.0</PackageJsonDependenciesProgressKendoReactProgressbars>

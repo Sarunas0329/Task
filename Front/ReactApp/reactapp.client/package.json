@@ -21,6 +21,7 @@
     "@progress/kendo-react-inputs": "^8.2.0",
     "@progress/kendo-react-intl": "^8.2.0",
     "@progress/kendo-react-layout": "^8.2.0",
+    "@progress/kendo-react-notification": "^8.2.0",
     "@progress/kendo-react-pdf": "^8.2.0",
     "@progress/kendo-react-popup": "^8.2.0",
     "@progress/kendo-react-progressbars": "^8.2.0",
